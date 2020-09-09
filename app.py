@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 import joblib
 import sklearn
-import pickle, gzip
 import pandas as pd
 import numpy as np
 
