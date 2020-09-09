@@ -1,0 +1,81 @@
+<html>
+<Head><h1>Heart Disease Prediction</h1></head>
+
+<body>
+<div class="login">
+<form action="{{ url_for('predict')}}", method="post">
+<p>
+	<b>AGE :
+	</b> <input type="number" min="0" max="150" name="age"> <br/><br/>
+
+
+	<b>GENDER :</b>
+	<input type="number" min="0" max="1" name="gender" id="gender"><br/>
+	<i>(MALE: 1 & FEMALE: 0)</i> <br/><br/>
+
+
+	<b>TRESTBPS :</b>
+	<input name="trestbps" type="number" min="0" step="0.01"> <br/>
+	<br/>
+
+	<b>CHOL :</b>
+	<input name="chol" type="number" min="0" step="0.01"> <br/>
+	<br/>
+
+	<b>FBS :</b>
+	<input type="number" min="0" max="1" name="fbs" id="fbs_True"><br/> 
+	<i>(> 120 mg/dl, 1 = True; 0 = False)</i><br/>
+	<br/>
+	
+	<b>THALACH :</b>
+	<input name="thalach" type="number" min="0" step="0.01"><br/>
+	<br/>
+
+	<b>EXANG :</b>
+	<input type="number" min="0" max="1" name="exang" id="ex_val"><br/> 
+	<i>(1 = YES; 0 = NO)</i><br/>
+	<br/>
+	
+	<b>OLDPEAK :</b>
+	<input name="oldpeak" type="number" min="0" step="0.01"> <br/>
+	<br/>
+
+	<b>SLOPE :</b><br/>
+	<input type="number" min="1" max="3" name="slope" id="slope"><br/>
+	<i>(1: upsloping, 2: flat, 3: downsloping)</i>
+	<br/><br/>
+	
+	<b>CP :</b>
+	<input type="number" min="1" max="4" name="cp" id="cp"><br/>
+	<i>(1: typical angina, 2: atypical angina, 3: non-anginal pain, 4: asymptomatic)</i><br/>
+	<br/><br/>
+
+	<b>THAL :</b>
+	<input type="number" min="1" max="3" name="thal" id="thal"><br/>
+	<i>(1 = normal; 2 = fixed defect; 3 = reversable defect)</i>
+	<br/><br/>
+	
+	<b>CA :</b>
+	<input type="number" min="1" max="4" name="ca" id="ca"><br/>
+	<i>(1-4)</i>
+	<br/>
+	<br/>
+
+	<b>RESTECG :</b>
+	<input type="number" min="0" max="2" name="restecg" id="restecg"><br/>
+	<i>(1 = normal, 2 = having ST-T wave abnormality, 3 = showing probable)</i><br/>
+	
+</p>
+
+<input type="submit" id="submit" value="Submit"></input>
+
+</form>
+
+</body>
+
+<center>
+<h1>{{prediction_text}}</h1>
+</center>
+
+</div>
+</html>

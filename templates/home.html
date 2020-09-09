@@ -1,0 +1,261 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<!--    <link rel="stylesheet" href="styles.css">-->
+    <title>Heart Disease Prediction</title>
+</head>
+
+<style>
+
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color:black;
+
+}
+
+body{
+    background: url("https://cdn.pixabay.com/photo/2016/08/10/20/26/stethoscope-1584223_1280.jpg") no-repeat top center;
+    padding: 0 10px;
+    background-size: cover;
+}
+
+.wrapper{
+
+    max-width: 500px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    margin: 20px auto;
+    padding: 30px;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 1.25);
+
+}
+
+
+.wrapper .title{
+
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #fec107;
+    text-transform: uppercase;
+    text-align: center;
+
+}
+
+
+.wrapper .form{
+
+    width: 100%;
+
+}
+
+.wrapper .form .input_field{
+
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.wrapper .form .input_field label{
+
+    width:80px;
+    font: bold;
+    color: wheat;
+    margin-right: 10px;
+    font-size: 14px;
+
+}
+
+
+.wrapper .form .input_field input{
+
+    width: 100px;
+
+}
+
+
+
+.wrapper .form .input_field .textarea{
+
+    resize: none;
+    height: 250px;
+    width: 500px;
+
+}
+
+</style>
+
+
+
+<body>
+<form action="{{ url_for('predict')}}" method="post">
+    <div class="wrapper">
+        <div class="title">
+            <h1 style="color: white;">Heart Disease Prediction</h1>
+        </div>
+        <div class="form">
+
+            <div class="input_field">
+                <textarea style="color: white; background: rgba(0, 0, 0, 0.3);" class="textarea" readonly>
+It's a clean, easy to understand set of data. However, the meaning of some of the column headers are not obvious. Here's what they mean,
+
+Age: displays the age of the individual.
+
+Sex: displays the gender of the individual using the following format :
+1 = male
+0 = female
+
+Chest-pain type: displays the type of chest-pain experienced by the individual using the following format :
+0 = typical angina
+1 = atypical angina
+2 = non — anginal pain
+3 = asymptotic
+
+Resting Blood Pressure: displays the resting blood pressure value of an individual in mmHg (unit)
+
+Serum Cholestrol: displays the serum cholesterol in mg/dl (unit)
+
+Fasting Blood Sugar: compares the fasting blood sugar value of an individual with 120mg/dl.
+
+If fasting blood sugar > 120mg/dl then : 1 (true) else : 0 (false)
+
+Resting ECG : displays resting electrocardiographic results
+0 = normal
+1 = having ST-T wave abnormality
+2 = left ventricular hyperthrophy
+
+Max heart rate achieved : displays the max heart rate achieved by an individual.
+
+Exercise induced angina :
+1 = yes
+0 = no
+
+ST depression induced by exercise relative to rest: displays the value which is an integer or float.
+Peak exercise ST segment :
+1 = upsloping
+2 = flat
+3 = downsloping
+
+Number of major vessels (0–3) colored by flourosopy : displays the value as integer or float.
+
+Thal : displays the thalassemia :
+0 = normal
+1 = fixed defect
+2 = reversible defect
+
+Diagnosis of heart disease : Displays whether the individual is suffering from heart disease or not :
+0 = absence
+1, 2, 3, 4 = present.
+                    </textarea>
+             </div>
+
+
+            <div class="input_field">
+               <label>AGE</label>
+                <input type="number" id="age" min="0" max="150" name="age" class="input_text">
+                <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Age: 1 - 150)</i>
+            </div>
+
+            <div class="input_field">
+                <label>SEX</label>
+                 <input type="number" min="0" max="1" name="sex" id="sex" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Male: 1 & Female: 0)</i>
+             </div>
+
+             <div class="input_field">
+                <label>CP</label>
+                 <input type="number"  name="cp" id="cp" min="0" max="3" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Single Value From Range 0-3)</i>
+             </div>
+
+             <div class="input_field">
+                <label>TRESTBPS</label>
+                 <input name="trestbps" id="trestbps" type="number" min="0" step="1" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Non-Decimal Value)</i>
+             </div>
+
+             <div class="input_field">
+                <label>CHOL</label>
+                 <input name="chol" id="chol" type="number" min="0" step="1" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Non-Decimal Value)</i>
+             </div>
+
+             <div class="input_field">
+                <label>FBS</label>
+                 <input type="number" min="0" max="1" name="fbs" id="fbs" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(1 = True; 0 = False)</i>
+             </div>
+
+             <div class="input_field">
+                <label>RESTECG</label>
+                 <input type="number" name="restecg" min="0" max="2" id="restecg" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Single Value From Range 0-2)</i>
+             </div>
+
+             <div class="input_field">
+                <label>THALACH</label>
+                 <input name="thalach" id="thalach" type="number" min="0" step="1" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Non-Decimal Value)</i>
+             </div>
+
+             <div class="input_field">
+                <label>EXANG</label>
+                 <input type="number" min="0" max="1" name="exang" id="exang" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Exercise: 1 = YES; 0 = NO)</i>
+             </div>
+
+             <div class="input_field">
+                <label>OLDPEAK</label>
+                 <input name="oldpeak" id="oldpeak" type="number" min="0" step="0.01" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Decimal Value)</i>
+             </div>
+
+             <div class="input_field">
+                <label>SLOPE</label>
+                 <input type="number" min="0" max="2" name="slope" id="slope" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Single Value From Range 0-2)</i>
+             </div>
+
+             <div class="input_field">
+                <label>CA</label>
+                 <input type="number" name="ca" min="0" max="4" id="ca" class="input_text">
+                 <br/>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Single Value From Range 0-4)</i>
+             </div>
+
+             <div class="input_field">
+                <label>THAL</label>
+                 <input type="number" name="thal" min="0" max="3" id="thal" class="input_text">
+                 <br>&nbsp;&nbsp;<i style="font-size: 10px; color: white;">(Enter Single Value From Range 0-3)</i>
+             </div>
+
+
+             <div class="input_field">
+                <input type="submit" style="color:black; background: skyblue;" id="submit" value="SUBMIT">
+            </div>
+
+
+            <div>
+                <center>
+                    <h2 style="color: white; margin-bottom:10px;">
+                        {{prediction_text}}
+                    </h2>
+                </center>
+            </div>
+
+
+
+        </div>
+    </div>
+
+</form>
+</body>
+</html>
