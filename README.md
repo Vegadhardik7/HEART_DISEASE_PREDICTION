@@ -1,5 +1,5 @@
 # HEART_DISEASE_PREDICTION:
-This is a basic beginner friendly project, if you are starting your journy into machine learning and dont know how to create an end product till deployment than this is the perfect project for you.
+This is a basic beginner-friendly project, if you are starting your journey into machine learning and don't know how to create an end product till deployment then this is the perfect project for you. This is a simple Heart Disease Prediction machine learning project which is converted into an end-to-end project.
 This is a simple Heart Disease Prediction machine learning project which is converted into <b>end-to-end</b> project.
 
 # Web-App URL:
